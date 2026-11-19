@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2026 The Stdlib Authors.
@@ -16,17 +16,32 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@main/index.d.ts"/>
+
+import { typedndarray } from '@stdlib/types/ndarray';
 
 /**
-* Calculate the k-th discrete forward difference of a one-dimensional ndarray.
+* Calculates the k-th discrete forward difference of a one-dimensional ndarray.
 *
-* @module @stdlib/blas-ext-base-ndarray-gdiff
+* ## Notes
+*
+* -   The function expects the following ndarrays:
+*
+*     -   a one-dimensional input ndarray.
+*     -   a one-dimensional ndarray containing values to prepend.
+*     -   a one-dimensional ndarray containing values to append.
+*     -   a one-dimensional output ndarray.
+*     -   a one-dimensional workspace ndarray.
+*     -   a zero-dimensional ndarray specifying the number of times to recursively compute differences.
+*
+* @param arrays - array-like object containing ndarrays
+* @returns output ndarray
 *
 * @example
 * var vector = require( '@stdlib/ndarray-vector-ctor' );
 * var scalar2ndarray = require( '@stdlib/ndarray-from-scalar' );
-* var gdiff = require( '@stdlib/blas-ext-base-ndarray-gdiff' );
 *
 * var x = vector( [ 2.0, 4.0, 6.0, 8.0, 10.0 ], 'generic' );
 * var prepend = vector( [ 1.0 ], 'generic' );
@@ -40,12 +55,9 @@
 * var y = gdiff( [ x, prepend, append, out, workspace, k ] );
 * // returns <ndarray>[ 1.0, 2.0, 2.0, 2.0, 2.0, 1.0 ]
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function gdiff<T extends typedndarray<number> = typedndarray<number>>( arrays: [ T, T, T, T, T, typedndarray<number> ] ): T;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = gdiff;
